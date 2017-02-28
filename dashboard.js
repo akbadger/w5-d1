@@ -67,7 +67,14 @@ var tableHeader = document.querySelectorAll('th');
     tableHeader[4].innerHTML = 'Client';
 
 // 9. Make an array of objects, each object representing a single row in the table. Remove the commas from the ID column and convert it to an actual Number data type. Example: [{id: 1001, firstName: 'Lorem', lastName: 'ipsum', department: 'dolor', client: 'sit'}]
+var objects = document.querySelectorAll('tbody tr');
 
+objects.forEach(function(object) {
+    console.log(object);
+    // var num = Number(objects);
+
+    // console.log(object + typeof num);
+});
 
 // 10. Make each word in the table capitalized.
 
