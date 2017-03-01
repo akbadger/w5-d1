@@ -1,16 +1,16 @@
 // 1. Count the number of records in the "Current Quarter Details" table.
-
-console.log(document.querySelectorAll ('tr').length);
+var rows = document.querySelectorAll('tbody tr');
+console.log(rows.length);
 
 
 // 2. Set each dashboard image to different images, one for each season. Make sure you also set the alt="" attribute with an appropriate description.
 
-var seasonImages = document.querySelectorAll('.placeholder img');
+var images = document.querySelectorAll('img');
 
-seasonImages[0].src = 'https://unsplash.it/400?image=1080';
-seasonImages[1].src = 'https://unsplash.it/400?image=1069';
-seasonImages[2].src = 'https://unsplash.it/400?image=1002';
-seasonImages[3].src = 'https://unsplash.it/400?image=995';
+images[0].src = 'https://unsplash.it/400?image=1080';
+images[1].src = 'https://unsplash.it/400?image=1069';
+images[2].src = 'https://unsplash.it/400?image=1002';
+images[3].src = 'https://unsplash.it/400?image=995';
 
 
 // 3. Below each dashboard image, there's a season/quarter name. Below those, there are three dots. Replace those three dots with a randomly generated number formatted as currency, like $12,589.00.
@@ -18,8 +18,8 @@ seasonImages[3].src = 'https://unsplash.it/400?image=995';
 var randomCurrency = document.querySelectorAll('.text-muted');
 
 randomCurrency.forEach(function(currency) {
-    var randomNumber = (Math.ceil(Math.random() * 100000) / 100);
-    currency.innerHTML = '$' + randomNumber;
+    var randomNumber = (Math.ceil(Math.random() * 20000));
+    currency.innerHTML = '$' + randomNumber + '.00';
 });
 
 
@@ -67,14 +67,30 @@ var tableHeader = document.querySelectorAll('th');
     tableHeader[4].innerHTML = 'Client';
 
 // 9. Make an array of objects, each object representing a single row in the table. Remove the commas from the ID column and convert it to an actual Number data type. Example: [{id: 1001, firstName: 'Lorem', lastName: 'ipsum', department: 'dolor', client: 'sit'}]
-var objects = document.querySelectorAll('tbody tr');
+var data = [];
+var rows = document.querySelectorAll('tbody tr');
 
-objects.forEach(function(object) {
-    console.log(object);
-    // var num = Number(objects);
-
-    // console.log(object + typeof num);
+rows.forEach(function(row) {
+    var object = {};
+    object.id = Number(row.children[0].innerText.replace(/,/g, ''));
+    object.firstName = row.children[1].innerText;
+    object.lastName = row.children[2].innerText;
+    object.departmentName = row.children[3].innerText;
+    object.clientName = row.children[4].innerText;
+    
+    data.push(object);    
 });
+
+console.log(data);
+
+// var objects = document.querySelectorAll('tbody tr');
+
+// objects.forEach(function(object) {
+//     console.log(object);
+//     // var num = Number(objects);
+
+//     // console.log(object + typeof num);
+// });
 
 // 10. Make each word in the table capitalized.
 
